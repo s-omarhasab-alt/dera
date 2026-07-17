@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Celebration of Existence</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Film Grain Background (fixed, always on top) -->
+    <canvas id="grain-canvas" aria-hidden="true"></canvas>
+
+    <!-- Preloader -->
+    <div id="preloader" role="status" aria-label="Loading">
+        <div class="preloader-content">
+            <p id="preloader-text">Preparing something special...</p>
+            <svg class="preloader-line" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="0" y1="1" x2="100" y2="1"
+                      stroke="#d4af37"
+                      stroke-width="2"
+                      vector-effect="non-scaling-stroke">
+                </line>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"  aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-indicator" aria-hidden="true"></div>
+
+    <!-- Glass Navigation -->
+    <nav id="glass-nav" aria-label="Main navigation">
+        <div class="nav-logo">CHRONOS</div>
+        <div class="nav-links">
+            <a href="#hero"      class="nav-link" data-sound="hover">Origin</a>
+            <a href="#universe"  class="nav-link" data-sound="hover">Constellations</a>
+            <a href="#memories"  class="nav-link" data-sound="hover">Resonance</a>
+        </div>
+    </nav>
+
+    <!-- =====================================================================
+         MAIN CONTENT  —  starts blurred, reveals after preloader
+         ===================================================================== -->
+    <main id="app-main" class="blur-initial">
+
+        <!-- ── CHAPTER I: Hero ──────────────────────────────────────────── -->
+        <section id="hero" class="chapter chapter--hero" data-chapter="I" aria-label="Chapter I: Origin">
+            <div class="hero-negative-space" aria-hidden="true"></div>
+            <div class="hero-content chapter-content">
+                <span class="chapter-eyebrow fade-up" data-delay="0">Chapter I</span>
+                <h1 class="split-text title-large" aria-label="Happy birthday, Dera">Happy birthday Dera</h1>
+                <p class="subtitle fade-up" data-delay="200">Why does he have a brother like Hadeer He's lucky</p>
+                <div class="scroll-prompt fade-up" aria-hidden="true" data-delay="400">
+                    <span class="scroll-text">Descend</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CHAPTER II: Universe ──────────────────────────────────────── -->
+        <section id="universe" class="chapter chapter--universe" data-chapter="II" aria-label="Chapter II: Constellations">
+            <canvas id="universe-canvas" aria-hidden="true"></canvas>
+            <div class="universe-overlay chapter-content z-above">
+                <span class="chapter-eyebrow chapter-reveal" data-delay="0">Chapter II</span>
+                <h2 class="split-text title-medium text-center chapter-3d-reveal">A Universe of Moments</h2>
+                <p class="body-text text-center measure-narrow chapter-reveal" data-delay="200">
+                    Among countless stars, some align to create constellations of profound meaning.
+                    Today marks the resonance of your existence in this vast expanse.
+                </p>
+            </div>
+        </section>
+
+        <!-- ── CHAPTER III: Memory Stack ───────────────────────────────── -->
+        <!-- PHASE 3: hover now resolves into a computed grid (see
+             initMemoryStackGrid in script.js) instead of a fixed starburst.
+             Markup itself is unchanged — cards can be added/removed freely
+             and the grid math in JS adapts automatically. -->
+        <section id="memories" class="chapter chapter--memories bg-darker" data-chapter="III" aria-label="Chapter III: Resonance">
+            <div class="chapter-content">
+                <div class="section-header text-center">
+                    <span class="chapter-eyebrow chapter-reveal" data-delay="0">Chapter III</span>
+                    <h2 class="split-text title-medium chapter-3d-reveal">The Archive</h2>
+                    <p class="chapter-reveal" data-delay="200">Hover to unseal the fragments.</p>
+                </div>
+
+                <div class="stack-spacer" aria-hidden="true"></div>
+
+                <div class="stack-container" data-sound="hover" role="list" aria-label="Memory cards">
+                    <div class="memory-card card-1 light-reactive" role="listitem">
+                        <h3>Best sister</h3>
+                        <p>The greatest, most beautiful, and sweetest sister in the world is getting a year older..</p>
+                    </div>
+                    <div class="memory-card card-2 light-reactive" role="listitem">
+                        <h3>Dr. Hadeer</h3>
+                        <p>Wishing you a year full of happiness, success, and love</p>
+                    </div>
+                    <div class="memory-card card-3 light-reactive" role="listitem">
+                        <h3>My close friend</h3>
+                        <p>No matter how much we grow up, you'll always be my favorite sister and my best friend</p>
+                    </div>
+                    <div class="memory-card card-4 light-reactive" role="listitem">
+                        <h3>(●'◡'●)</h3>
+                        <p>The art of bending without breaking.</p>
+                    </div>
+                    <div class="memory-card card-5 light-reactive" role="listitem">
+                        <h3>(❁´◡`❁)</h3>
+                        <p>Memories with you are definitely sweeter</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CHAPTER IV: Sticky Timeline ──────────────────────────────── -->
+        <!-- PHASE 3: cards now scale()-down + fade as they exit, layered on
+             the Phase 2 3D tilt, per the checklist's explicit requirement.
+             See initStickyTimeline in script.js. -->
+        <section id="timeline" class="chapter chapter--timeline" data-chapter="IV" aria-label="Chapter IV: Chronology">
+            <div class="sticky-container">
+                <span class="chapter-eyebrow chapter-reveal" data-delay="0">Chapter IV</span>
+                <h2 class="split-text title-medium text-center chapter-3d-reveal">Chronology</h2>
+                <div class="timeline-cards" role="list">
+                    <article class="timeline-card light-reactive" role="listitem" data-timeline-idx="0">
+                        <span class="timeline-year">❤️💕</span>
+                        <p>Happy Birthday, my dear sister. Thank you for every laugh, every memory
+                             and every moment we've shared. I pray this year brings you endless happiness
+                             good health, and success. You deserve nothing but the very best.
+                              I love you so much.</p>
+                    </article>
+                    <article class="timeline-card light-reactive" role="listitem" data-timeline-idx="1">
+                        <span class="timeline-year">😍🥰</span>
+                        <p>Happy Birthday! Stay happy, stay blessed, and keep shining.</p>
+                    </article>
+                    <article class="timeline-card light-reactive" role="listitem" data-timeline-idx="2">
+                        <span class="timeline-year">Zenith</span>
+                        <p>The realization of power, grace, and unapologetic presence.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+<!-- ── CHAPTER: Photo Gallery ──────────────────────────────────────── -->
+<section id="gallery" class="chapter chapter--gallery bg-darker" aria-label="Gallery">
+    <div class="chapter-content gallery-content">
+        <span class="chapter-eyebrow chapter-reveal" data-delay="0">Memories</span>
+        <h2 class="split-text title-medium text-center chapter-3d-reveal">The Moments</h2>
+
+        <div class="gallery-grid">
+
+            <!-- صورة كبيرة على اليسار -->
+            <div class="gallery-item gallery-item--tall fade-up" data-delay="120">
+                <img src="sis1.png" alt="" class="gallery-img" loading="lazy">
+            </div>
+
+            <!-- صورتين صغيرين على اليمين -->
+            <div class="gallery-item fade-up" data-delay="200">
+                <img src="sis2.png" alt="" class="gallery-img" loading="lazy">
+            </div>
+            <div class="gallery-item fade-up" data-delay="300">
+                <img src="sis3.png" alt="" class="gallery-img" loading="lazy">
+            </div>
+
+            <!-- صورة عرضانة تاخد عرض كامل -->
+            <div class="gallery-item gallery-item--wide fade-up" data-delay="400">
+                <img src="sis4.png" alt="" class="gallery-img" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+</section>
+        <!-- ── CHAPTER V: Finale ─────────────────────────────────────────── -->
+        <!-- PHASE 3: tunnel rings are now created + recycled entirely in JS
+             (initInfiniteTunnel) and each carries an <img>. The empty
+             .tunnel-container below is just the 3D stage JS populates. -->
+        <section id="finale" class="chapter chapter--finale overflow-hidden bg-black" data-chapter="V" aria-label="Chapter V: Revelation">
+            <div class="finale-3d-wrapper" aria-hidden="true">
+                <div class="tunnel-container">
+                    <!-- Rings + images injected by JS, recycled infinitely -->
+                </div>
+            </div>
+
+            <div class="chapter-content finale-content z-above text-center">
+                <span class="chapter-eyebrow chapter-reveal" data-delay="0" style="color: rgba(212,175,55,0.6)">Chapter V</span>
+                <h2 class="split-text title-large text-gold chapter-3d-reveal">Happy Birthday</h2>
+                <p class="body-text chapter-reveal" data-delay="300">Long press the void for a revelation.</p>
+            </div>
+
+            <!-- Easter Egg Overlay -->
+            <div id="easter-egg-overlay" role="dialog" aria-modal="true" aria-label="Easter egg" aria-hidden="true">
+                <div class="egg-content">
+                    <h3 class="title-medium text-gold">Resonance Found</h3>
+                    <p>You possess the patience of the stars.</p>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- /#app-main -->
+
+    <script src="script.js"></script>
+</body>
+</html>
